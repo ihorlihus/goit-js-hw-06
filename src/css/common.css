@@ -22,3 +22,14 @@ button {
   padding: 8px 12px;
   cursor: pointer;
 }
+
+li.image-list {
+  display: flex;
+  justify-content: center;
+}
+
+img.image-item {
+  width: 640px;
+  padding-bottom: 15px;
+  
+}
