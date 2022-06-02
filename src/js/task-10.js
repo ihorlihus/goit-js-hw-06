@@ -1,10 +1,7 @@
 
-// еще решаю
-
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
-
+};
 
 const controlsEl = document.querySelector('#controls')
 const inputEl = controlsEl.firstElementChild;
@@ -12,12 +9,14 @@ const btnCreate = inputEl.nextElementSibling;
 const buttonDestroy = btnCreate.nextElementSibling;
 const inBoxesEl = document.querySelector('#boxes');
 
+inputEl.addEventListener('blur', (e) => {
+  btnCreate.addEventListener('change',
+    createBoxes(e.currentTarget.value));
+});
 
-
-inputEl.addEventListener('input', (e) => {
-  const boxesNum = e.currentTarget.value;
-  console.log(boxesNum);
-  btnCreate.addEventListener('change', createBoxes(boxesNum));
+buttonDestroy.addEventListener('click', () => {
+  inBoxesEl.innerHTML = '';
+  inputEl.value = '';
 })
 
 function createBoxes(amount) {
@@ -27,15 +26,9 @@ function createBoxes(amount) {
     const item = document.createElement("div");
     item.dataset.color = color;
     item.style.backgroundColor = color;
-    item.style.width = '30px';
-    item.style.height = '30px';
+    item.style.width = 30 + i* 10 + 'px';
+    item.style.height = 30 + i* 10 + 'px';
     items.push(item);
   }
   inBoxesEl.append(...items);
-}
-
-buttonDestroy.addEventListener('click', () => {
-  inBoxesEl.innerHTML = '';
-})
-
-console.log(inBoxesEl)
+};
